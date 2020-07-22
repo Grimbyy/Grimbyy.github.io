@@ -8,14 +8,18 @@ async function handleResponse(response) {
 	console.log(response)
 	switch(response) {
 	  case "help":
-	    writeLine("help: view all commands.\nview: view documents stored on system.", 10)
+	    await writeLine("help: view all commands.\nview: view documents stored on system.", 10)
+	    askInput("Input: ", 25);
 	    break;
 	  case "welldoneonfindingthepassword":
-	    writeLine()
+	    await writeLine("Access Denied.", 150)
+	    await sleep(500)
+	    $("body").empty();
+	    $("body").append('<iframe width="1vw" height="1vh" src="https://www.youtube.com/embed/g_vZasFzMN4?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
 	    break;
 	  default:
 	    await writeLine("Invalid command, please enter a valid command [type help for commands]", 10)
-	    askInput("Please enter a command or PassPhrase (Type help for commands): ", 25);
+	    askInput("Input: ", 25);
 	} 
 }
 
