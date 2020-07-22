@@ -4,7 +4,7 @@ function sleep(ms) {
 }
 
 async function handleResponse(response) {
-	$(input).eq(0).remove();
+	$("input").eq(0).remove();
 	console.log(response)
 	switch(response) {
 	  case "help":
