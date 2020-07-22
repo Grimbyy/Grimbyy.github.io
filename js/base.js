@@ -5,11 +5,18 @@ function sleep(ms) {
 
 async function handleResponse(response) {
 	response = response.toLowerCase();
-	$("input").eq(0).remove();
+	$("input").eq(-1).prop('disabled', true);
+	writeHTML($("main"), "<hr>");
+	await writeLine("-- RESULTS", 10)
+	writeHTML($("main"), "<hr>");
 	console.log(response)
 	switch(response.split(" ")[0]) {
 	  case "help":
-	    await writeLine("help: view all commands.\nview: view documents stored on system.", 10)
+	  	writeHTML($("main"), "<hr>");
+	  	await writeLine("-- SYSTEM COMMANDS", 10)
+	  	writeHTML($("main"), "<hr>");
+	    await writeLine("--help: view all commands.\n--view: view documents stored on system.", 10)
+	    writeHTML($("main"), "<hr>");
 	    break;
 	  case "welldoneonfindingthepassword":
 	    await writeLine("Access Denied.", 150)
@@ -40,7 +47,13 @@ async function handleResponse(response) {
 	    await writeLine("Invalid command, please enter a valid command [type help for commands]", 10)
 	    break;
 	}
+	writeHTML($("main"), "<hr>");
 	askInput("Input: ", 25); 
+}
+
+async function writeHTML(parent, text)
+{
+	parent.append( text );
 }
 
 async function writeLine(text, speedms) {
@@ -87,9 +100,9 @@ function clickBody() {
 async function initialText() {
 	await writeLine("Welcome, User", 25);
 	await write($("p")[0], "...", 750);
-	await sleep(2500);
+	await sleep(500);
 	await writeLine("This is a test OS built with a single HTML document and a javascript file [using jquery]", 25);
-	await sleep(1000);
+	await sleep(500);
 	await askInput("Please enter a command or PassPhrase (Type help for commands): ", 25);
 }
 
