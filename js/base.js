@@ -12,11 +12,7 @@ async function handleResponse(response) {
 	console.log(response)
 	switch(response.split(" ")[0]) {
 	  case "help":
-	  	writeHTML($("main"), "<hr>");
-	  	await writeLine("-- SYSTEM COMMANDS", 10)
-	  	writeHTML($("main"), "<hr>");
-	    await writeLine("--help: view all commands.\n--view: view documents stored on system.", 10)
-	    writeHTML($("main"), "<hr>");
+	    await writeLine("--help: view all commands.\n--view <none/filename>: view documents stored on system.", 10)
 	    break;
 	  case "welldoneonfindingthepassword":
 	    await writeLine("Access Denied.", 150)
