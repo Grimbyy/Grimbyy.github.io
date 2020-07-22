@@ -3,7 +3,11 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-sleep(5000);
-$( "main" ).append( "<p>This is a test OS built with a single HTML document and a javascript file [using jquery]</p>" );
-sleep(2000);
-$( "main" ).append( "<p>What do you with to do? (Type help for commands)</p>" );
+async function initialText() {
+	sleep(5000);
+	$( "main" ).append( "<p>This is a test OS built with a single HTML document and a javascript file [using jquery]</p>" );
+	sleep(2000);
+	$( "main" ).append( "<p>What do you with to do? (Type help for commands)</p>" );
+}
+
+demo();
