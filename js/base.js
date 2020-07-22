@@ -4,12 +4,12 @@ function sleep(ms) {
 }
 
 async function handleResponse(response) {
+	response = response.toLowerCase();
 	$("input").eq(0).remove();
 	console.log(response)
-	switch(response) {
+	switch(response.split(" ")[0]) {
 	  case "help":
 	    await writeLine("help: view all commands.\nview: view documents stored on system.", 10)
-	    askInput("Input: ", 25);
 	    break;
 	  case "welldoneonfindingthepassword":
 	    await writeLine("Access Denied.", 150)
@@ -17,10 +17,30 @@ async function handleResponse(response) {
 	    $("body").empty();
 	    $("body").append('<iframe width="'+ window.innerWidth +'" height="'+ window.innerHeight +'" src="https://www.youtube.com/embed/g_vZasFzMN4?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:fixed;top: 0;left: 0;"></iframe>')
 	    break;
+	  case "view":
+	  	let breakdown = response.split(" ")
+	  	console.log(breakdown.length)
+	  		if (breakdown.length == 1)
+	  		{
+	  			await writeLine("Files found: cv", 25);
+	  		} else {
+	  			//Display asked for document
+	  			switch (breakdown[1]) {
+	  				case "cv":
+		  			await writeLine("Loading document" , 100)
+		  			await write($("p").eq(-1), "...", 750);
+		  			window.location.href = "http://grimbyy.github.io/cv";
+		  			break;
+	  			default:
+	  				await writeLine("File not found.", 25);
+	  		}
+	  	}
+	  	break;
 	  default:
 	    await writeLine("Invalid command, please enter a valid command [type help for commands]", 10)
-	    askInput("Input: ", 25);
-	} 
+	    break;
+	}
+	askInput("Input: ", 25); 
 }
 
 async function writeLine(text, speedms) {
