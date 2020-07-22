@@ -11,4 +11,4 @@ async function initialText() {
 	$( "p" )[$( "p" ).length - 1].append("<input type=""text"" placeholder=""Please type a command..."" style=""display: inline-block;"">");
 }
 
-demo();
+initialText();
