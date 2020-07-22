@@ -9,9 +9,9 @@ async function handleResponse(response) {
 	writeHTML($("main"), "<hr>");
 	await writeLine("-- RESULTS", 10)
 	writeHTML($("main"), "<hr>");
-	console.log(response)
 	switch(response.split(" ")[0]) {
 	  case "help":
+	  	$("p").eq(-1).text("--SYSTEM COMMANDS");
 	    await writeLine("--help: view all commands.\n--view <none/filename>: view documents stored on system.", 10)
 	    break;
 	  case "welldoneonfindingthepassword":
@@ -22,17 +22,20 @@ async function handleResponse(response) {
 	    break;
 	  case "view":
 	  	let breakdown = response.split(" ")
-	  	console.log(breakdown.length)
 	  		if (breakdown.length == 1)
 	  		{
-	  			await writeLine("Files found: cv", 25);
+	  			await writeLine("Files found: [cv, passwords.txt]", 25);
 	  		} else {
 	  			//Display asked for document
 	  			switch (breakdown[1]) {
 	  				case "cv":
-		  			await writeLine("Loading document" , 100)
-		  			await write($("p").eq(-1), "...", 750);
-		  			window.location.href = "http://grimbyy.github.io/cv";
+			  			await writeLine("Loading document" , 100)
+			  			await write($("p").eq(-1), "...", 750);
+			  			window.location.href = "http://grimbyy.github.io/cv";
+		  			break;
+		  			case "passwords.txt":
+		  				$("p").eq(-1).text("passwords.txt");
+		  				await writeLine("machine asks for a command or passphrase. i wonder what this pass phrase could be...\n\nFOUND IT: welldoneonfindingthepassword", 25);
 		  			break;
 	  			default:
 	  				await writeLine("File not found.", 25);
@@ -102,4 +105,20 @@ async function initialText() {
 	await askInput("Please enter a command or PassPhrase (Type help for commands): ", 25);
 }
 
+async function clock()
+{
+	let today = new Date();
+	let h = today.getHours();
+	let m = check(today.getMinutes());
+	let s = check(today.getSeconds());
+	var t = setTimeout(clock, 500);
+	$("span").eq(0).text(today);
+	async function check(i)
+	{
+		if (i<10) {i="0"+i};
+		return i;
+	}
+}
+
 initialText();
+clock();
