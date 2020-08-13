@@ -7,19 +7,20 @@ function setup() {
   
   buttons.push(createButton('Fun'));
   buttons[0].mousePressed(function() {
-    window.location.href("https://www.google.com");
+    location.replace();
   });
   buttons.push(createButton('Contact'));
   buttons[1].mousePressed(function() {
-    window.location.href("https://www.google.com");
+    location.replace();
   });
   buttons.push(createButton('References'));
   buttons[2].mousePressed(function() {
-    window.location.href("https://www.google.com");
+    location.replace();
   });
   buttons.push(createButton('Projects'));
   buttons[3].mousePressed(function() {
-    window.location.href("/P5JS/Ray Casting/raycasting");
+    location.replace("http://grimbyy.github.io/P5JS/Ray Casting/raycasting");
+    console.log("hello");
   });
   buttonSize = createVector(330, 35);
   stroke(0);
