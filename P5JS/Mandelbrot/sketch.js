@@ -7,7 +7,7 @@ var viewer = function(p)
     p.createCanvas(420, 420);
     p.pixelDensity(1);
     let sliderDist = 75;
-    ZoomSlider = p.createSlider(0,1, 1, 0.0001);
+    ZoomSlider = p.createSlider(0.0000001,1, 1, 0.0000001);
     ZoomSlider.position(p.width-1, (sliderDist*1));
     ZoomSlider.size(331, 25);
     resSlider = p.createSlider(1,10, 2, 1);
