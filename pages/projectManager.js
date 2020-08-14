@@ -35,6 +35,12 @@ function loadProj(name) {
 			$('td').filter(function(){return $(this).text() === 'Ray Casting'}).attr("id", "selected");
 			resizeIframe(400, 400);
 		break;
+		case "Fractal1":
+			targetFrame.attr('src',"https://grimbyy.github.io/P5JS/Fractal Tree");
+			$( "#selected" ).attr("id", "");
+			$('td').filter(function(){return $(this).text() === 'Fractal Tree'}).attr("id", "selected");
+			resizeIframe(400, 720);
+		break;
 		default:
 			targetFrame.attr('src',"https://grimbyy.github.io/P5JS/Boids/boids");
 			$( "#selected" ).attr("id", "");
