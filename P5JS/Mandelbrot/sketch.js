@@ -32,14 +32,18 @@ var viewer = function(p)
     
       if (p.keyIsDown(p.LEFT_ARROW))
       {
-          mapXSlider.value(mapXSlider.value()+0.0000001);
+          mapXSlider.value(mapXSlider.value()+ZoomSlider.value());
       } else if (p.keyIsDown(p.RIGHT_ARROW)) {
-          mapXSlider.value(mapXSlider.value()-0.0000001);
+          mapXSlider.value(mapXSlider.value()-ZoomSlider.value());
       } else if (p.keyIsDown(p.UP_ARROW)) {
-          mapYSlider.value(mapYSlider.value()+0.0000001);
+          mapYSlider.value(mapYSlider.value()+ZoomSlider.value());
       } else if (p.keyIsDown(p.DOWN_ARROW)) {
-          mapYSlider.value(mapYSlider.value()-0.0000001);
-      }
+          mapYSlider.value(mapYSlider.value()-ZoomSlider.value());
+      } else if (p.keyIsDown(p.COMMA)) {
+		  ZoomSlider.value(ZoomSlider.value()*2);
+	  } else if (p.keyIsDown(p.PERIOD)) {
+		  ZoomSlider.value(ZoomSlider.value()/2);
+	  }
   
       let density = densitySlider.value();
   
