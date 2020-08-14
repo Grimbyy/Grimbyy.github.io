@@ -17,10 +17,10 @@ var viewer = function(p)
     densitySlider.position(p.width-1, (sliderDist*3));
     densitySlider.size(331, 25);
   
-    mapXSlider = p.createSlider((-p.width)*5,p.width*5, -100, 1);
+    mapXSlider = p.createSlider((-p.width)*5,p.width*5, -100, 0.0000001);
     mapXSlider.position(p.width-1, (sliderDist*4));
     mapXSlider.size(331, 25);
-    mapYSlider = p.createSlider((-p.height)*5,p.height*5, 0, 1);
+    mapYSlider = p.createSlider((-p.height)*5,p.height*5, 0, 0.0000001);
     mapYSlider.position(p.width-1, (sliderDist*5));
     mapYSlider.size(331, 25);
   }
