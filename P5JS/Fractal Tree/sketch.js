@@ -4,6 +4,8 @@ let rotationLimitSlider;
 let limitSlider;
 let branchNoSlider;
 
+let sliderPos;
+
 let branchNo = 1;
 
 let splitDensity;
@@ -20,12 +22,12 @@ let count;
 function setup() {
   createCanvas(400, 720);
   angleMode(DEGREES);
-  let sliderPos = createVector(width/4, (height/2)+35);
+  sliderPos = createVector(width/4, (height/2)+35);
   let sliderSize = createVector(width/2, 35);
   densitySlider = createSlider(1, 8, 1, 1);
   rotationLimitSlider = createSlider(0, 180, 33, 1);
   diminishSlider = createSlider(0, 0.70, 0.60, 0.01);
-  limitSlider = createSlider(0, 1000000, 2000, 100);
+  limitSlider = createSlider(0, 1000000, 5000, 100);
   //branchNoSlider = createSlider(-10, 1, 1, 1);
   
   densitySlider.position(sliderPos.x, sliderPos.y);
@@ -86,6 +88,10 @@ function draw() {
   translate(0, -trunkLength)
   branch(75, branchLimit);
   pop();
+  text('Split Density: ' + splitDensity, sliderPos.x, sliderPos.y+(70*0));
+  text('Branch Rotation: ' + rotationValue + '°', sliderPos.x, sliderPos.y+(70*1));
+  text('Shorten Multiplier: ' + diminishValue, sliderPos.x, sliderPos.y+(70*2));
+  text('Branch Limit: ' + branchLimit, sliderPos.x, sliderPos.y+(70*3));
   text('Lines drawn: ' + count, 10, 25);
   //noLoop();
     applied = true;
