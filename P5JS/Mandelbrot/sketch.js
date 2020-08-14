@@ -7,7 +7,7 @@ var viewer = function(p)
     p.createCanvas(420, 420);
     p.pixelDensity(1);
     let sliderDist = 75;
-    ZoomSlider = p.createSlider(0.0000001,1, 1, 0.0000001);
+    ZoomSlider = p.createSlider(0,1, 1, 0.0000000000001);
     ZoomSlider.position(p.width-1, (sliderDist*1));
     ZoomSlider.size(331, 25);
     resSlider = p.createSlider(1,10, 2, 1);
@@ -30,21 +30,6 @@ var viewer = function(p)
     p.loadPixels();
     if (resLast != resSlider.value() || zoomLast != ZoomSlider.value() || densityLast != densitySlider.value() || mapXLast != mapXSlider.value() || mapYLast != mapYSlider.value() || p.keyIsDown(p.LEFT_ARROW) || p.keyIsDown(p.RIGHT_ARROW) || p.keyIsDown(p.UP_ARROW)|| p.keyIsDown(p.DOWN_ARROW)) {
     
-      if (p.keyIsDown(p.LEFT_ARROW))
-      {
-          mapXSlider.value(mapXSlider.value()+ZoomSlider.value());
-      } else if (p.keyIsDown(p.RIGHT_ARROW)) {
-          mapXSlider.value(mapXSlider.value()-ZoomSlider.value());
-      } else if (p.keyIsDown(p.UP_ARROW)) {
-          mapYSlider.value(mapYSlider.value()+ZoomSlider.value());
-      } else if (p.keyIsDown(p.DOWN_ARROW)) {
-          mapYSlider.value(mapYSlider.value()-ZoomSlider.value());
-      } else if (p.keyIsDown(p.COMMA)) {
-		  ZoomSlider.value(ZoomSlider.value()*2);
-	  } else if (p.keyIsDown(p.PERIOD)) {
-		  ZoomSlider.value(ZoomSlider.value()/2);
-	  }
-  
       let density = densitySlider.value();
   
       for (let x=0;x<p.width;x+=resSlider.value()) {
@@ -115,8 +100,9 @@ var controls = function(p) {
     p.pop();
     p.fill(255);
     p.push();
-    p.textSize(32);
-    p.text('CONTROLS', (p.width/8)/6, p.height/11);
+    p.textSize(16);
+    p.text('CONTROLS', (p.width/8)/6, p.height/13);
+	p.text('Arrow Keys & +-', (p.width/8)*5, p.height/13);
     p.pop();
     p.text('Zoom ('+ zoomLast +')', (p.width/8)/6, 75+(labelDist*0));
     p.text('Resolution ('+ (110-(resLast*10)) +'%)', (p.width/8)/6, 75+(labelDist*1));
@@ -211,6 +197,24 @@ function loadLocation(locNum) {
         mapYSlider.value(0);
         break;
     }
+}
+
+function keyPressed(keyCode) {
+	console.log(ZoomSlider.value()*0.5);
+	if (keyCode.keyCode === 37)
+      {
+          mapXSlider.value(mapXSlider.value()+(ZoomSlider.value()*10));
+      } else if (keyCode.keyCode === 39) {
+          mapXSlider.value(mapXSlider.value()-(ZoomSlider.value()*10));
+      } else if (keyCode.keyCode === 38) {
+          mapYSlider.value(mapYSlider.value()+(ZoomSlider.value()*10));
+      } else if (keyCode.keyCode === 40) {
+          mapYSlider.value(mapYSlider.value()-(ZoomSlider.value()*10));
+      } else if (keyCode.keyCode === 173) {
+		  ZoomSlider.value(ZoomSlider.value()*2);
+	  } else if (keyCode.keyCode === 61) {
+		  ZoomSlider.value(ZoomSlider.value()*0.75);
+	  }
 }
 
 var myp5 = new p5(viewer);
