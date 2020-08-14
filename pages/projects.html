@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+	<script
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			  crossorigin="anonymous"></script>
+ 	</head>
+ 	<body>
+  	<header>
+	<a href="https://grimbyy.github.io">←<a>
+  		<h1>Projects</h1>
+  		<hr>
+  	</header>
+	<br>
+  	<main>
+  		<table>
+  			<tr>
+	  			<td id="selected" onClick="loadProj('Boids')">Boids</td>
+	  			<td onClick="loadProj('Mandelbrot')">Mandelbrot</td>
+	  			<td onClick="loadProj('RayC')">Ray Casting</td>
+  			</tr>
+  		</table>
+  		<iframe id="preview" src="https://grimbyy.github.io/P5JS/Boids/boids" frameborder="0" width="800" height="480" scrolling="no" onload=""></iframe>
+  	</main>
+  	<script src="projectManager.js"></script>
+	</body>
+</html>

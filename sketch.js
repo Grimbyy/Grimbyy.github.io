@@ -19,8 +19,7 @@ function setup() {
   });
   buttons.push(createButton('Projects'));
   buttons[3].mousePressed(function() {
-    location.replace("http://grimbyy.github.io/P5JS/Ray Casting/raycasting");
-    console.log("hello");
+    location.replace("http://grimbyy.github.io/pages/projects");
   });
   buttonSize = createVector(330, 35);
   stroke(0);
@@ -30,6 +29,7 @@ function setup() {
   }
 }
 
+0
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   for (let i = 0;i<buttons.length;i++) {
