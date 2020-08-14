@@ -17,10 +17,10 @@ var viewer = function(p)
     densitySlider.position(p.width-1, (sliderDist*3));
     densitySlider.size(331, 25);
   
-    mapXSlider = p.createSlider((-p.width)*5,p.width*5, -100, 0.0000001);
+    mapXSlider = p.createSlider((-p.width)*5,p.width*5, -100, 1);
     mapXSlider.position(p.width-1, (sliderDist*4));
     mapXSlider.size(331, 25);
-    mapYSlider = p.createSlider((-p.height)*5,p.height*5, 0, 0.0000001);
+    mapYSlider = p.createSlider((-p.height)*5,p.height*5, 0, 1);
     mapYSlider.position(p.width-1, (sliderDist*5));
     mapYSlider.size(331, 25);
   }
@@ -32,13 +32,13 @@ var viewer = function(p)
     
       if (p.keyIsDown(p.LEFT_ARROW))
       {
-          mapXSlider.value(mapXSlider.value()+5);
+          mapXSlider.value(mapXSlider.value()+0.0000001);
       } else if (p.keyIsDown(p.RIGHT_ARROW)) {
-          mapXSlider.value(mapXSlider.value()-5);
+          mapXSlider.value(mapXSlider.value()-0.0000001);
       } else if (p.keyIsDown(p.UP_ARROW)) {
-          mapYSlider.value(mapYSlider.value()+5);
+          mapYSlider.value(mapYSlider.value()+0.0000001);
       } else if (p.keyIsDown(p.DOWN_ARROW)) {
-          mapYSlider.value(mapXSlider.value()-5);
+          mapYSlider.value(mapYSlider.value()-0.0000001);
       }
   
       let density = densitySlider.value();
