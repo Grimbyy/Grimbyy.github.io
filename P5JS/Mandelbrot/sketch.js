@@ -7,17 +7,22 @@ var viewer = function(p)
     p.createCanvas(420, 420);
     p.pixelDensity(1);
     let sliderDist = 75;
-    ZoomSlider = p.createSlider(0,2, 1, 0.01);
-    ZoomSlider.position(p.width+20, (sliderDist*1));
+    ZoomSlider = p.createSlider(0,1, 1, 0.0001);
+    ZoomSlider.position(p.width-1, (sliderDist*1));
+    ZoomSlider.size(331, 25);
     resSlider = p.createSlider(1,10, 2, 1);
-    resSlider.position(p.width+20, (sliderDist*2));
+    resSlider.position(p.width-1, (sliderDist*2));
+    resSlider.size(331, 25);
     densitySlider = p.createSlider(3,1000, 50, 1);
-    densitySlider.position(p.width+20, (sliderDist*3));
+    densitySlider.position(p.width-1, (sliderDist*3));
+    densitySlider.size(331, 25);
   
-    mapXSlider = p.createSlider((-p.width)*5,p.width*5, 100, 1);
-    mapXSlider.position(p.width+20, (sliderDist*4));
+    mapXSlider = p.createSlider((-p.width)*5,p.width*5, -100, 1);
+    mapXSlider.position(p.width-1, (sliderDist*4));
+    mapXSlider.size(331, 25);
     mapYSlider = p.createSlider((-p.height)*5,p.height*5, 0, 1);
-    mapYSlider.position(p.width+20, (sliderDist*5));
+    mapYSlider.position(p.width-1, (sliderDist*5));
+    mapYSlider.size(331, 25);
   }
 
   p.draw = function() {
@@ -41,8 +46,8 @@ var viewer = function(p)
       for (let x=0;x<p.width;x+=resSlider.value()) {
           for (let y=0;y<p.height;y+=resSlider.value()) {
     
-              let a = p.map(x, 0+mapXSlider.value(), p.width+mapXSlider.value(), -ZoomSlider.value(), ZoomSlider.value());
-              let b = p.map(y, 0+mapYSlider.value(), p.height+mapYSlider.value(), -ZoomSlider.value(), ZoomSlider.value());
+              let a = p.map((x+(mapXSlider.value()/ZoomSlider.value())), 0, p.width, -ZoomSlider.value(), ZoomSlider.value());
+              let b = p.map((y+(mapYSlider.value()/ZoomSlider.value())), 0, p.height, -ZoomSlider.value(), ZoomSlider.value());
       
               let ca = a;
               let cb = b;
@@ -90,8 +95,11 @@ var viewer = function(p)
 let labelDist = 75
 var controls = function(p) {
   p.setup = function() {
-    p.createCanvas(210, 420);
-    
+    p.createCanvas(333, 420);
+    loc5button = p.createButton('RESET');
+    loc5button.position(420, p.height);
+    loc5button.size(p.width, 35);
+    loc5button.mousePressed(function() {loadLocation(999)});
   }
   
   p.draw = function() {
@@ -102,12 +110,15 @@ var controls = function(p) {
     p.line(1, 50, p.width, 50);
     p.pop();
     p.fill(255);
-    p.text('---CONTROLS---', p.width/4, 30);
-    p.text('Zoom ('+ zoomLast +')', 22.5, 75+(labelDist*0));
-    p.text('Resolution ('+ (110-(resLast*10)) +'%)', 22.5, 75+(labelDist*1));
-    p.text('Render Density ('+ densityLast+')', 22.5, 75+(labelDist*2));
-    p.text('Move X ('+ mapXLast +')', 22.5, 75+(labelDist*3));
-    p.text('Move Y ('+ mapYLast +')', 22.5, 75+(labelDist*4));
+    p.push();
+    p.textSize(32);
+    p.text('CONTROLS', (p.width/8)/6, p.height/11);
+    p.pop();
+    p.text('Zoom ('+ zoomLast +')', (p.width/8)/6, 75+(labelDist*0));
+    p.text('Resolution ('+ (110-(resLast*10)) +'%)', (p.width/8)/6, 75+(labelDist*1));
+    p.text('Render Density ('+ densityLast+')', (p.width/8)/6, 75+(labelDist*2));
+    p.text('Move X ('+ mapXLast +')', (p.width/8)/6, 75+(labelDist*3));
+    p.text('Move Y ('+ mapYLast +')', (p.width/8)/6, 75+(labelDist*4));
   }
 }
 
@@ -192,7 +203,7 @@ function loadLocation(locNum) {
         resSlider.value(2);
         ZoomSlider.value(1);
         densitySlider.value(50);
-        mapXSlider.value(100);
+        mapXSlider.value(-100);
         mapYSlider.value(0);
         break;
     }
@@ -200,4 +211,4 @@ function loadLocation(locNum) {
 
 var myp5 = new p5(viewer);
 var myp51 = new p5(controls);
-var myp52 = new p5(buttons);
+//var myp52 = new p5(buttons);
